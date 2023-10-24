@@ -1,0 +1,57 @@
+# Define an empty to-do list
+to_do_list = []
+
+# Function to add a task to the list
+def add_task(task):
+    to_do_list.append(task)
+
+# Function to display the tasks in the list
+def show_tasks():
+    if not to_do_list:
+        print("No tasks in the list.")
+    else:
+        for i, task in enumerate(to_do_list, 1):
+            print(f"{i}. {task}")
+
+# Function to mark a task as completed
+def complete_task(task_index):
+    try:
+        task_index = int(task_index)
+        if 1 <= task_index <= len(to_do_list):
+            to_do_list.pop(task_index - 1)
+        else:
+            print("Invalid task index.")
+    except ValueError:
+        print("Invalid input. Please enter a valid task number.")
+
+# Introducing Bug 1: Missing error handling
+# Bug 2: Incomplete 'complete_task' function
+# Bug 3: No option to exit the program
+
+# Main loop
+while True:
+    print("\nTo-Do List App")
+    print("1. Add Task")
+    print("2. Show Tasks")
+    print("3. Complete Task")
+    print("4. Quit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        task = input("Enter a new task: ")
+        add_task(task)
+        print("Task added!")
+
+    elif choice == "2":
+        show_tasks()
+
+    elif choice == "3":
+        task_index = input("Enter the task number to mark as completed: ")
+        complete_task(task_index)
+
+    elif choice == "4":
+        break
+
+    else:
+        print("Invalid choice. Please choose a valid option.")
